@@ -24,13 +24,32 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val fontPoppins = FontFamily(
+            Font(R.font.poppins_thin, FontWeight.Thin),
+            Font(R.font.poppins_extralight, FontWeight.ExtraLight),
+            Font(R.font.poppins_light, FontWeight.Light),
+            Font(R.font.poppins_regular, FontWeight.Normal),
+            Font(R.font.poppins_medium, FontWeight.Medium),
+            Font(R.font.poppins_semibold, FontWeight.SemiBold),
+            Font(R.font.poppins_bold, FontWeight.Bold),
+        )
+
         setContent {
             Column {
                 Text(
@@ -43,10 +62,7 @@ class MainActivity : ComponentActivity() {
                 val title = " Charles Leclerc"
                 val contentDescription = "Charles Leclerc 16"
 
-
-                Row(
-
-                ) {
+                Row {
 
                     Column {
                         Box(
@@ -79,9 +95,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                Row(
-
-                ) {
+                Row {
                     Column {
                         Box(
                             modifier = Modifier
@@ -105,12 +119,57 @@ class MainActivity : ComponentActivity() {
                             ImageView(
                                 painter = painterResource(id = R.drawable.sf23),
                                 contentDescription = "2023's SF-23",
-                                title = "2023's SF-23")
+                                title = "2023's SF-23"
+                            )
                         }
 
                     }
 
 
+                }
+
+                Row(
+                    modifier = Modifier
+                        .padding(0.dp, 20.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color(0xFF101010))
+                            .padding(12.dp)
+                    ) {
+                        Text(
+                            text = buildAnnotatedString {
+                                withStyle(
+                                    style = SpanStyle(
+                                        color = Color.Magenta,
+                                        fontSize = 30.sp
+                                    )
+
+                                ) {
+                                    append("K")
+                                }
+                                append("ygo ")
+                                withStyle(
+                                    style = SpanStyle(
+                                        color = Color.Magenta,
+                                        fontSize = 30.sp
+                                    )
+
+                                ) {
+                                    append("i")
+                                }
+                                append("nc ")
+                            },
+                            color = Color.White,
+                            fontSize = 18.sp,
+                            fontFamily = fontPoppins,
+                            fontWeight = FontWeight.Bold,
+                            fontStyle = FontStyle.Italic,
+                            textAlign = TextAlign.Center,
+                            textDecoration = TextDecoration.Underline
+                        )
+                    }
                 }
             }
         }
